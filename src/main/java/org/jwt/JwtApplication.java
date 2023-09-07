@@ -20,7 +20,7 @@ public class JwtApplication {
 		SpringApplication.run(JwtApplication.class, args);
 	}
 
-	@Autowired
+	/*@Autowired
 	PasswordEncoder passwordEncoder;
 	@Autowired
 	UserRepository userRepository;
@@ -60,6 +60,6 @@ public class JwtApplication {
 			userRepository.save(user2);
 
 		};
-	}
+	}*/
 
 }

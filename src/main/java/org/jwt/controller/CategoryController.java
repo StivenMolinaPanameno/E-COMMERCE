@@ -34,6 +34,7 @@ public class CategoryController {
         if(categoryOptional.isPresent()){
             Category category = categoryOptional.get();
             category.setName(categoryDTO.getName());
+            category.setEnabled(categoryDTO.getEnabled());
             categoryService.save(category);
             return ResponseEntity.ok("Update Successful");
         }

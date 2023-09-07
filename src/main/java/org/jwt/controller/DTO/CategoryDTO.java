@@ -13,4 +13,5 @@ public class CategoryDTO {
     private String name;
     @NotBlank
     private Boolean enabled;
+
 }
