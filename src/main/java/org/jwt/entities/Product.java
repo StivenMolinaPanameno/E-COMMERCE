@@ -26,4 +26,7 @@ public class Product {
     @JsonIgnore
     private Category category;
     private Boolean enabled;
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private ProductDetail productDetail;
 }

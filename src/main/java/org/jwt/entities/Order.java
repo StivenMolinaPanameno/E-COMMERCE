@@ -1,12 +1,14 @@
 package org.jwt.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 import org.jwt.security.models.UserEntity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,15 +24,25 @@ public class Order {
 
     @ManyToOne(optional = false, cascade = CascadeType.DETACH, targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private UserEntity user;
-    @Column(columnDefinition = "DATE")
+    @Column(columnDefinition = "DATETIME")
     private Date date;
     private BigDecimal total;
+    private Boolean enable=Boolean.TRUE;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
 
     public Order(BigDecimal total, Date date, UserEntity client) {
         this.total = total;
         this.date = date;
         this.user = client;
+    }
+    public Order(BigDecimal total, Date date, UserEntity client, Boolean enabled) {
+        this.total = total;
+        this.date = date;
+        this.user = client;
+        this.enable = enabled;
     }
 }

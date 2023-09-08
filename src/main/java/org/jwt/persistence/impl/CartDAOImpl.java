@@ -1,5 +1,6 @@
 package org.jwt.persistence.impl;
 
+import jakarta.transaction.Transactional;
 import org.jwt.entities.Cart;
 import org.jwt.persistence.ICartDAO;
 import org.jwt.repository.CartRepository;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+@Transactional
 @Component
 public class CartDAOImpl implements ICartDAO {
     @Autowired
